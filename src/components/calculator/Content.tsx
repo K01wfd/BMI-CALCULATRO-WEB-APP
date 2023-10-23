@@ -21,7 +21,8 @@ function Content({ onUnitChange }: Props) {
       <div className={styles.calcFormContainer}>
         <p role='heading'>Enter your details below</p>
         <form>
-          <div className={styles.unitsWrraper}>
+          {/*  */}
+          <div className={styles.unitsWrapper}>
             <Unit id={'metric'} label={'Metric'} onUnitChange={onUnitChange} />
             <Unit
               id={'imperial'}
@@ -29,6 +30,8 @@ function Content({ onUnitChange }: Props) {
               onUnitChange={onUnitChange}
             />
           </div>
+          {/*  */}
+          <div className={styles.inputsWrapper}></div>
         </form>
       </div>
     </>
