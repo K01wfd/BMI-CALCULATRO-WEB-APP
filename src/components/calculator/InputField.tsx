@@ -4,9 +4,16 @@ interface Props {
   label?: string;
   placeholder: string;
   id: string;
+  measurment: string;
   onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
-function InputField({ label, placeholder, id, onInputChange }: Props) {
+function InputField({
+  label,
+  placeholder,
+  id,
+  onInputChange,
+  measurment,
+}: Props) {
   return (
     <div className={styles.inputGroup}>
       <label htmlFor={id}>{label}</label>
@@ -16,6 +23,7 @@ function InputField({ label, placeholder, id, onInputChange }: Props) {
         className={styles.textInput}
         onChange={onInputChange}
       />
+      <span className={styles.measurment}>{measurment}</span>
     </div>
   );
 }

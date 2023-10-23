@@ -1,27 +1,25 @@
 import logoImg from '../../assets/images/logo.svg';
 import styles from '../../styles/calculator/calculator.module.css';
 import InputField from './InputField';
+import Result from './Result';
 import Unit from './Unit';
+import { inputFields } from '../../data/inputFields';
 interface Props {
   onUnitChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   unit: string;
+  hasResult: boolean;
+  result: string;
+  resultExplanation: string;
 }
-function Content({ onUnitChange, unit, onInputChange }: Props) {
-  const inputFields = {
-    metric: [
-      { label: 'Height', id: 'cm', placeholder: 'cm' },
-      { label: 'Weight', id: 'weight', placeholder: 'kg' },
-    ],
-
-    imperialInputs: [
-      { label: 'Height', id: 'ft', placeholder: 'ft' },
-      { label: '', id: 'in', placeholder: 'in' },
-      { label: 'Weight', id: 'st', placeholder: 'st' },
-      { label: '', id: 'lbs', placeholder: 'lbs' },
-    ],
-  };
-
+function Content({
+  onUnitChange,
+  unit,
+  hasResult,
+  result,
+  resultExplanation,
+  onInputChange,
+}: Props) {
   return (
     <>
       <div className={styles.calcDetails}>
@@ -34,7 +32,7 @@ function Content({ onUnitChange, unit, onInputChange }: Props) {
           your overall health and well-being.
         </p>
       </div>
-      <div className={styles.calcFormContainer}>
+      <div className={styles.calcContainer}>
         <p role='heading'>Enter your details below</p>
         <form>
           {/*  */}
@@ -51,23 +49,35 @@ function Content({ onUnitChange, unit, onInputChange }: Props) {
             {unit === 'metric' &&
               inputFields.metric.map((data) => (
                 <InputField
+                  key={data.id}
                   id={data.id}
                   label={data.label}
                   placeholder={data.placeholder}
                   onInputChange={onInputChange}
+                  measurment={data.measurment}
                 />
               ))}
             {unit === 'imperial' &&
               inputFields.imperialInputs.map((data) => (
                 <InputField
+                  key={data.id}
                   id={data.id}
                   label={data.label}
                   placeholder={data.placeholder}
                   onInputChange={onInputChange}
+                  measurment={data.measurment}
                 />
               ))}
           </div>
         </form>
+        {/*  */}
+        <div className={styles.resultContainer}>
+          <Result
+            hasResult={hasResult}
+            result={result}
+            resultExplanation={resultExplanation}
+          />
+        </div>
       </div>
     </>
   );
