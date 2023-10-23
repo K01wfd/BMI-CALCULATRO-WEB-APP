@@ -17,7 +17,7 @@ function Unit({ id, label, onUnitChange }: Props) {
           value={id}
           name='unit'
         />
-        <label htmlFor='metric' className={styles.unitsLabel}>
+        <label htmlFor={id} className={styles.unitsLabel}>
           {label}
         </label>
       </div>
