@@ -1,16 +1,23 @@
 import logoImg from '../../assets/images/logo.svg';
 import styles from '../../styles/calculator/calculator.module.css';
-import InputField from './InputField';
+import InputFields from './InputFields';
 import Result from './Result';
 import Unit from './Unit';
 import { inputFields } from '../../data/inputFields';
+import { UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
+import { FormData } from './CalcMain';
+// LOOK GPT TO HANDLE EACH INPUT FIELD.
+// SET FIELDS VALUES PROPERLY
+// CONVERT
+// SHOW RESULT
+
 interface Props {
   onUnitChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   unit: string;
   hasResult: boolean;
   result: string;
   resultExplanation: string;
+  register: UseFormRegister<FormData>;
 }
 function Content({
   onUnitChange,
@@ -18,7 +25,7 @@ function Content({
   hasResult,
   result,
   resultExplanation,
-  onInputChange,
+  register,
 }: Props) {
   return (
     <>
@@ -46,28 +53,7 @@ function Content({
           </div>
           {/*  */}
           <div className={styles.inputsWrapper}>
-            {unit === 'metric' &&
-              inputFields.metric.map((data) => (
-                <InputField
-                  key={data.id}
-                  id={data.id}
-                  label={data.label}
-                  placeholder={data.placeholder}
-                  onInputChange={onInputChange}
-                  measurment={data.measurment}
-                />
-              ))}
-            {unit === 'imperial' &&
-              inputFields.imperialInputs.map((data) => (
-                <InputField
-                  key={data.id}
-                  id={data.id}
-                  label={data.label}
-                  placeholder={data.placeholder}
-                  onInputChange={onInputChange}
-                  measurment={data.measurment}
-                />
-              ))}
+            <InputFields unit={unit} register={register} />
           </div>
         </form>
         {/*  */}
