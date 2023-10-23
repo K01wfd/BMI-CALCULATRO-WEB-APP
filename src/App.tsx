@@ -1,5 +1,10 @@
+import MainContainer from './components/MainContainer';
 function App() {
-  return <></>;
+  return (
+    <MainContainer>
+      <div>hello</div>
+    </MainContainer>
+  );
 }
 
 export default App;
