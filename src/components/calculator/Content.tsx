@@ -1,11 +1,27 @@
 import logoImg from '../../assets/images/logo.svg';
 import styles from '../../styles/calculator/calculator.module.css';
+import InputField from './InputField';
 import Unit from './Unit';
-
 interface Props {
   onUnitChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  unit: string;
 }
-function Content({ onUnitChange }: Props) {
+function Content({ onUnitChange, unit, onInputChange }: Props) {
+  const inputFields = {
+    metric: [
+      { label: 'Height', id: 'cm', placeholder: 'cm' },
+      { label: 'Weight', id: 'weight', placeholder: 'kg' },
+    ],
+
+    imperialInputs: [
+      { label: 'Height', id: 'ft', placeholder: 'ft' },
+      { label: '', id: 'in', placeholder: 'in' },
+      { label: 'Weight', id: 'st', placeholder: 'st' },
+      { label: '', id: 'lbs', placeholder: 'lbs' },
+    ],
+  };
+
   return (
     <>
       <div className={styles.calcDetails}>
@@ -31,7 +47,26 @@ function Content({ onUnitChange }: Props) {
             />
           </div>
           {/*  */}
-          <div className={styles.inputsWrapper}></div>
+          <div className={styles.inputsWrapper}>
+            {unit === 'metric' &&
+              inputFields.metric.map((data) => (
+                <InputField
+                  id={data.id}
+                  label={data.label}
+                  placeholder={data.placeholder}
+                  onInputChange={onInputChange}
+                />
+              ))}
+            {unit === 'imperial' &&
+              inputFields.imperialInputs.map((data) => (
+                <InputField
+                  id={data.id}
+                  label={data.label}
+                  placeholder={data.placeholder}
+                  onInputChange={onInputChange}
+                />
+              ))}
+          </div>
         </form>
       </div>
     </>

@@ -10,7 +10,12 @@ function InputField({ label, placeholder, id, onInputChange }: Props) {
   return (
     <div className={styles.inputGroup}>
       <label htmlFor={id}>{label}</label>
-      <input type='text' placeholder={placeholder} onChange={onInputChange} />
+      <input
+        type='text'
+        placeholder={placeholder}
+        className={styles.textInput}
+        onChange={onInputChange}
+      />
     </div>
   );
 }
