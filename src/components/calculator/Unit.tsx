@@ -1,11 +1,9 @@
 import styles from '../../styles/calculator/calculator.module.css';
 
 interface Props {
-  id: string;
-  label: string;
   onUnitChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
-function Unit({ id, label, onUnitChange }: Props) {
+function Unit({ onUnitChange }: Props) {
   return (
     <>
       <div className={styles.unitGroup}>
@@ -13,12 +11,26 @@ function Unit({ id, label, onUnitChange }: Props) {
           type='radio'
           onChange={onUnitChange}
           className={styles.units}
-          id={id}
-          value={id}
+          id='metric'
+          value='metric'
+          name='unit'
+          defaultChecked
+        />
+        <label htmlFor='metric' className={styles.unitsLabel}>
+          Metric
+        </label>
+      </div>
+      <div className={styles.unitGroup}>
+        <input
+          type='radio'
+          onChange={onUnitChange}
+          className={styles.units}
+          id='imperial'
+          value='imperial'
           name='unit'
         />
-        <label htmlFor={id} className={styles.unitsLabel}>
-          {label}
+        <label htmlFor='metric' className={styles.unitsLabel}>
+          Imperial
         </label>
       </div>
     </>

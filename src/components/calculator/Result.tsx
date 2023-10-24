@@ -2,7 +2,7 @@ import styles from '../../styles/calculator/calculator.module.css';
 
 interface Props {
   hasResult: boolean;
-  result: string;
+  result: number;
   resultExplanation: string;
 }
 function Result({ hasResult, result, resultExplanation }: Props) {

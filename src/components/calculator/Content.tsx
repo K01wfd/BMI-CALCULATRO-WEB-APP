@@ -3,30 +3,37 @@ import styles from '../../styles/calculator/calculator.module.css';
 import InputFields from './InputFields';
 import Result from './Result';
 import Unit from './Unit';
-import { inputFields } from '../../data/inputFields';
-import { UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
-import { FormData } from './CalcMain';
+
+import { FieldValues, UseFormRegister } from 'react-hook-form';
+
 // LOOK GPT TO HANDLE EACH INPUT FIELD.
 // SET FIELDS VALUES PROPERLY
 // CONVERT
 // SHOW RESULT
 
 interface Props {
+  register: UseFormRegister<FieldValues>;
   onUnitChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   unit: string;
+  onInputChange: (e: FieldValues) => void;
   hasResult: boolean;
-  result: string;
+  result: number;
   resultExplanation: string;
-  register: UseFormRegister<FormData>;
 }
 function Content({
-  onUnitChange,
+  register,
   unit,
+  onUnitChange,
+  onInputChange,
   hasResult,
   result,
   resultExplanation,
-  register,
 }: Props) {
+  // under 18.5 considered underweight
+  // between 18.5 - 24.9 healthy weight
+  // between 25 - 30 overweight
+  // > 30 obese
+
   return (
     <>
       <div className={styles.calcDetails}>
@@ -44,16 +51,15 @@ function Content({
         <form>
           {/*  */}
           <div className={styles.unitsWrapper}>
-            <Unit id={'metric'} label={'Metric'} onUnitChange={onUnitChange} />
-            <Unit
-              id={'imperial'}
-              label={'Imperial'}
-              onUnitChange={onUnitChange}
-            />
+            <Unit onUnitChange={onUnitChange} />
           </div>
           {/*  */}
           <div className={styles.inputsWrapper}>
-            <InputFields unit={unit} register={register} />
+            <InputFields
+              register={register}
+              unit={unit}
+              onInputChange={onInputChange}
+            />
           </div>
         </form>
         {/*  */}
