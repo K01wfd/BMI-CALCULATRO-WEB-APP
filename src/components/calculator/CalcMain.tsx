@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import styles from '../../styles/calculator/calculator.module.css';
-import Content from './Content';
+import CalcContent from './CalcContent';
 import { FieldValues, useForm } from 'react-hook-form';
 import {
-  calculate,
+  choseCalc,
   checkIfNumberInput,
   convertHeight,
   convertWeight,
@@ -16,17 +16,20 @@ function CalcMain() {
   const [height, setHeight] = useState(0);
   const [weight, setWeight] = useState(0);
   const [result, setResult] = useState(0);
+  const [hasResult, setHasResult] = useState(false);
 
   const onUnitToggle = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUnit(event.target.value);
     setValue('height', 0);
-    setValue('convertedHeight', 1);
+    setValue('convertedHeight', 0);
     setValue('convertedWeight', 0);
     setValue('weight', 0);
     setHeight(0);
     setWeight(0);
+    setHasResult(false);
   };
   const handleInputsChange = (e: FieldValues) => {
+    setResult(0);
     trigger += 1;
     let initialValue = e.target.value;
     let numberValue = checkIfNumberInput(initialValue)
@@ -51,23 +54,25 @@ function CalcMain() {
     }
   };
   useEffect(() => {
-    const BMI = calculate(unit, height, weight);
-    if (BMI && BMI > 15) {
+    const BMI = choseCalc(unit, height, weight);
+    if (BMI && BMI > 15 && BMI < 81) {
       setResult(BMI);
+      setHasResult(true);
     }
   }, [handleInputsChange]);
 
+  console.log(typeof height);
   return (
     <div className={styles.outerWrapper}>
       <div className={styles.innerWrapper}>
-        <Content
+        <CalcContent
           unit={unit}
           onUnitChange={(event) => onUnitToggle(event)}
           register={register}
           onInputChange={handleInputsChange}
-          hasResult={true}
+          hasResult={hasResult}
           result={result}
-          resultExplanation='nothing'
+          height={height}
         />
       </div>
     </div>

@@ -15,7 +15,7 @@ function InputFields({ register, unit, onInputChange }: Props) {
           type='text'
           className={styles.textInput}
           id={unit === 'metric' ? 'cm' : 'ft'}
-          defaultValue={0}
+          placeholder='0'
           {...register('height')}
           onChange={onInputChange}
         />
@@ -32,7 +32,7 @@ function InputFields({ register, unit, onInputChange }: Props) {
             id='in'
             {...register('convertedHeight')}
             readOnly
-            defaultValue={0}
+            placeholder='0'
           />
           <span className={styles.measurment}>in</span>
         </div>
@@ -44,7 +44,7 @@ function InputFields({ register, unit, onInputChange }: Props) {
           type='text'
           id={unit === 'metric' ? 'kg' : 'st'}
           className={styles.textInput}
-          defaultValue={0}
+          placeholder='0'
           {...register('weight')}
           onChange={onInputChange}
         />
@@ -61,7 +61,7 @@ function InputFields({ register, unit, onInputChange }: Props) {
             className={styles.textInput}
             {...register('convertedWeight')}
             readOnly
-            defaultValue={0}
+            placeholder='0'
           />
           <span className={styles.measurment}>lbs</span>
         </div>

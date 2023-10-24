@@ -1,16 +1,23 @@
 import logoImg from '../../assets/images/logo.svg';
+import {
+  getImperialWeight,
+  getMetricWeight,
+} from '../../services/calculatorFunctions';
 import styles from '../../styles/calculator/calculator.module.css';
 import InputFields from './InputFields';
 import Result from './Result';
 import Unit from './Unit';
 
 import { FieldValues, UseFormRegister } from 'react-hook-form';
-
-// LOOK GPT TO HANDLE EACH INPUT FIELD.
-// SET FIELDS VALUES PROPERLY
-// CONVERT
-// SHOW RESULT
-
+const bmiResults = {
+  underweight:
+    'You are underweight for your height. It is important to aim for a healthy weight range',
+  healthy: 'Your BMI suggests you have a healthy weight.',
+  overweight:
+    'You are overweight for your height. Being overweight can increase your risk for many diseases.',
+  obese:
+    'Your BMI is considered obese, It is important to take steps to reduce your weight.',
+};
 interface Props {
   register: UseFormRegister<FieldValues>;
   onUnitChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -18,7 +25,7 @@ interface Props {
   onInputChange: (e: FieldValues) => void;
   hasResult: boolean;
   result: number;
-  resultExplanation: string;
+  height: number;
 }
 function Content({
   register,
@@ -27,12 +34,21 @@ function Content({
   onInputChange,
   hasResult,
   result,
-  resultExplanation,
+  height,
 }: Props) {
-  // under 18.5 considered underweight
-  // between 18.5 - 24.9 healthy weight
-  // between 25 - 30 overweight
-  // > 30 obese
+  const { lowestMWeight, highestMWeight } = getMetricWeight(height);
+  const { lowestStWeight, lowestLbsWeight, highestStWeight, highestLbsWeight } =
+    getImperialWeight(height);
+  let resultExplanation = '';
+  if (hasResult) {
+    result < 18.5
+      ? (resultExplanation = bmiResults.underweight)
+      : result >= 18.5 && result <= 24.9
+      ? (resultExplanation = bmiResults.healthy)
+      : result >= 25 && result <= 30
+      ? (resultExplanation = bmiResults.overweight)
+      : (resultExplanation = bmiResults.obese);
+  }
 
   return (
     <>
@@ -68,6 +84,16 @@ function Content({
             hasResult={hasResult}
             result={result}
             resultExplanation={resultExplanation}
+            lowestWeight={
+              unit === 'metric'
+                ? lowestMWeight + 'kg'
+                : lowestStWeight + 'st ' + lowestLbsWeight + 'lbs'
+            }
+            highestWeight={
+              unit === 'metric'
+                ? highestMWeight + 'kg'
+                : highestStWeight + 'st ' + highestLbsWeight + 'lbs'
+            }
           />
         </div>
       </div>

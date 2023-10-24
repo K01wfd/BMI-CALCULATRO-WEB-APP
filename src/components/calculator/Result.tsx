@@ -4,8 +4,16 @@ interface Props {
   hasResult: boolean;
   result: number;
   resultExplanation: string;
+  lowestWeight: string;
+  highestWeight: string;
 }
-function Result({ hasResult, result, resultExplanation }: Props) {
+function Result({
+  hasResult,
+  result,
+  resultExplanation,
+  lowestWeight,
+  highestWeight,
+}: Props) {
   return (
     <div className={styles.resultInnerWrraper}>
       <div className={styles.resultBox}>
@@ -13,9 +21,13 @@ function Result({ hasResult, result, resultExplanation }: Props) {
         {hasResult ? result : null}
       </div>
       <p>
-        {hasResult
-          ? resultExplanation
-          : 'Enter your height and weight and you’ll see your BMI result here'}
+        {result > 15.5
+          ? resultExplanation +
+            'your ideal weight is between ' +
+            lowestWeight +
+            ' - ' +
+            highestWeight
+          : 'Enter your height and weight and you will see your BMI result here'}
       </p>
     </div>
   );
