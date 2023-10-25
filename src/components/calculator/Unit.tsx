@@ -1,11 +1,11 @@
-import styles from '../../styles/calculator/calculator.module.css';
+import styles from '../../styles/calculator/unit.module.css';
 
 interface Props {
   onUnitChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 function Unit({ onUnitChange }: Props) {
   return (
-    <>
+    <div className={styles.unitsWrapper}>
       <div className={styles.unitGroup}>
         <input
           type='radio'
@@ -29,11 +29,11 @@ function Unit({ onUnitChange }: Props) {
           value='imperial'
           name='unit'
         />
-        <label htmlFor='metric' className={styles.unitsLabel}>
+        <label htmlFor='imperial' className={styles.unitsLabel}>
           Imperial
         </label>
       </div>
-    </>
+    </div>
   );
 }
 

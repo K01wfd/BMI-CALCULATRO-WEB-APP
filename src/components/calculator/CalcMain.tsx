@@ -60,8 +60,6 @@ function CalcMain() {
       setHasResult(true);
     }
   }, [handleInputsChange]);
-
-  console.log(typeof height);
   return (
     <div className={styles.outerWrapper}>
       <div className={styles.innerWrapper}>

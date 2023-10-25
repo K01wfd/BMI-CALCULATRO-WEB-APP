@@ -1,5 +1,5 @@
 import { FieldValues, UseFormRegister } from 'react-hook-form';
-import styles from '../../styles/calculator/calculator.module.css';
+import styles from '../../styles/calculator/inputs.module.css';
 
 interface Props {
   register: UseFormRegister<FieldValues>;
@@ -8,7 +8,7 @@ interface Props {
 }
 function InputFields({ register, unit, onInputChange }: Props) {
   return (
-    <>
+    <div className={styles.inputsWrapperImperial}>
       <div className={styles.inputGroup}>
         <label htmlFor={unit === 'metric' ? 'cm' : 'ft'}>Height</label>
         <input
@@ -24,8 +24,9 @@ function InputFields({ register, unit, onInputChange }: Props) {
         </span>
       </div>
       {/*  */}
+
       {unit === 'imperial' && (
-        <div className={styles.inputGroup}>
+        <div className={styles.readOnly}>
           <input
             type='text'
             className={styles.textInput}
@@ -37,6 +38,7 @@ function InputFields({ register, unit, onInputChange }: Props) {
           <span className={styles.measurment}>in</span>
         </div>
       )}
+
       {/*  */}
       <div className={styles.inputGroup}>
         <label htmlFor={unit === 'metric' ? 'kg' : 'st'}>Weight</label>
@@ -53,8 +55,9 @@ function InputFields({ register, unit, onInputChange }: Props) {
         </span>
       </div>
       {/*  */}
+
       {unit === 'imperial' && (
-        <div className={styles.inputGroup}>
+        <div className={styles.readOnly}>
           <input
             type='text'
             id='lbs'
@@ -66,7 +69,7 @@ function InputFields({ register, unit, onInputChange }: Props) {
           <span className={styles.measurment}>lbs</span>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

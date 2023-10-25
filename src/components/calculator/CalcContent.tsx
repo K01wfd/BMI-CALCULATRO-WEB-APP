@@ -66,17 +66,13 @@ function Content({
         <p role='heading'>Enter your details below</p>
         <form>
           {/*  */}
-          <div className={styles.unitsWrapper}>
-            <Unit onUnitChange={onUnitChange} />
-          </div>
+          <Unit onUnitChange={onUnitChange} />
           {/*  */}
-          <div className={styles.inputsWrapper}>
-            <InputFields
-              register={register}
-              unit={unit}
-              onInputChange={onInputChange}
-            />
-          </div>
+          <InputFields
+            register={register}
+            unit={unit}
+            onInputChange={onInputChange}
+          />
         </form>
         {/*  */}
         <div className={styles.resultContainer}>

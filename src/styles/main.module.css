@@ -1,5 +1,8 @@
 .mainContainer {
-  max-width: 1400px;
-  margin-inline: auto;
-  padding-inline: var(--main-inline-padding);
+  padding-inline: var(--main-inline-padding, 2.4rem);
+}
+@media (max-width: 768px) {
+  .mainContainer {
+    --main-inline-padding: 0;
+  }
 }

@@ -1,0 +1,43 @@
+.tipsContainer {
+  margin-top: 9.6rem;
+  padding-inline: 11.6rem;
+  padding-block: 7.2rem;
+  display: flex;
+  gap: 3.2rem;
+  background: var(--Gradiant-very-light);
+  border-radius: var(--border-radius-large);
+}
+
+.tipIcon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 4.5rem;
+}
+
+.tipDetails > * + * {
+  margin-top: 2.4rem;
+}
+@media (max-width: 768px) {
+  .tipsContainer {
+    flex-direction: column;
+    gap: 4rem;
+    padding-inline: 3.9rem;
+  }
+  .tip {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+  }
+  .tipIcon {
+    margin-bottom: 0;
+  }
+}
+@media (max-width: 425px) {
+  .tipsContainer {
+    padding-inline: 1.9rem;
+  }
+  .tip {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
