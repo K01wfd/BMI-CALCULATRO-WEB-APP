@@ -1,5 +1,6 @@
 import CalcMain from './components/calculator/CalcMain';
 import Hero from './components/hero/Hero';
+import Limitations from './components/limitations/Limitations';
 import HealthTips from './components/tips/HealthTips';
 import styles from './styles/main.module.css';
 function App() {
@@ -8,6 +9,7 @@ function App() {
       <CalcMain />
       <Hero />
       <HealthTips />
+      <Limitations />
     </main>
   );
 }

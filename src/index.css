@@ -26,8 +26,8 @@
   --white: #fff;
   --Gradiant-very-light: linear-gradient(
     290deg,
-    rgba(215, 252, 254, 0.2) 0%,
-    rgba(214, 252, 254, 0.2) 100%
+    rgba(215, 252, 254, 0.15) 0%,
+    rgba(214, 252, 254, 0.15) 100%
   );
   --Gradiant-light: linear-gradient(
     290deg,
