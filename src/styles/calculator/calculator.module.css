@@ -40,7 +40,7 @@
 }
 /* INPUTS */
 
-@media (max-width: 768px) {
+@media (max-width: 820px) {
   .calcDetails {
     --details-max-width: 100%;
     padding-inline: 8rem;
