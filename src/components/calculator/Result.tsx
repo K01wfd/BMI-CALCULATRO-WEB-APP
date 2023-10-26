@@ -1,4 +1,5 @@
 import styles from '../../styles/calculator/calculator.module.css';
+import Explanation from './Explanation';
 
 interface Props {
   hasResult: boolean;
@@ -15,20 +16,21 @@ function Result({
   highestWeight,
 }: Props) {
   return (
-    <div className={styles.resultInnerWrraper}>
+    <div className={hasResult ? styles.wrapperResult : styles.wrapperNoResult}>
       <div className={styles.resultBox}>
         <p>{hasResult ? 'Your BMI is...' : 'Welcome!'}</p>
-        {hasResult ? result : null}
+        <p className={styles.result}>{hasResult ? result : null}</p>
       </div>
-      <p>
-        {result > 15.5
-          ? resultExplanation +
-            'your ideal weight is between ' +
-            lowestWeight +
-            ' - ' +
-            highestWeight
-          : 'Enter your height and weight and you will see your BMI result here'}
-      </p>
+
+      {hasResult ? (
+        <Explanation
+          highest={highestWeight}
+          lowest={lowestWeight}
+          explanation={resultExplanation}
+        />
+      ) : (
+        'Enter your height and weight and you will see your BMI result here'
+      )}
     </div>
   );
 }

@@ -83,12 +83,12 @@ function Content({
             lowestWeight={
               unit === 'metric'
                 ? lowestMWeight + 'kg'
-                : lowestStWeight + 'st ' + lowestLbsWeight + 'lbs'
+                : lowestStWeight + 'st  ' + lowestLbsWeight + 'lbs'
             }
             highestWeight={
               unit === 'metric'
                 ? highestMWeight + 'kg'
-                : highestStWeight + 'st ' + highestLbsWeight + 'lbs'
+                : highestStWeight + 'st  ' + highestLbsWeight + 'lbs'
             }
           />
         </div>

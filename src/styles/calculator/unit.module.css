@@ -3,3 +3,59 @@
   grid-template-columns: repeat(2, 1fr);
   font-weight: var(--fw-600);
 }
+.unitGroup {
+  font-weight: var(--fw-600);
+  line-height: 1.1;
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+}
+
+.unit {
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  appearance: none;
+  /* For iOS < 15 to remove gradient background */
+  background-color: #fff;
+  /* Not removed via appearance */
+  margin: 0;
+  font: inherit;
+  color: var(--blue);
+  width: 31px;
+  height: 31px;
+  border: 0.1em solid var(--borders-clr);
+  border-radius: 50%;
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+  transform: translateX(0.3rem);
+}
+/* radio when checked */
+.unit[type='radio']:checked {
+  background-color: var(--light-blue);
+  border: 0.05em solid var(--blue);
+}
+/* radio when hovered */
+.unit[type='radio']:hover {
+  border: 0.05em solid var(--blue);
+}
+
+/* radio before */
+.unit[type='radio']:before {
+  content: '';
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  background: var(--blue);
+}
+
+/* radio before when checked */
+.unit[type='radio']:checked::before {
+  transform: scale(1);
+}
+.unitsLabel {
+  font-weight: var(--fw-600);
+  cursor: pointer;
+}

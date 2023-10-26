@@ -21,8 +21,8 @@
 .pattern {
   position: absolute;
   right: 10%;
-  top: -30%;
-  width: 85px;
+  top: -5%;
+  width: 60px;
 }
 @media (max-width: 820px) {
   .heroWrapper {

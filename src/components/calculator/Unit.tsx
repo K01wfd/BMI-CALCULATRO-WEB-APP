@@ -10,7 +10,7 @@ function Unit({ onUnitChange }: Props) {
         <input
           type='radio'
           onChange={onUnitChange}
-          className={styles.units}
+          className={styles.unit}
           id='metric'
           value='metric'
           name='unit'
@@ -24,7 +24,7 @@ function Unit({ onUnitChange }: Props) {
         <input
           type='radio'
           onChange={onUnitChange}
-          className={styles.units}
+          className={styles.unit}
           id='imperial'
           value='imperial'
           name='unit'
